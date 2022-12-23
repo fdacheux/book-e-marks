@@ -1,0 +1,30 @@
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    height: 70px;
+    width: 100%;
+    background-color: #051b1b;
+    color: #b3f8e9;
+    font-size: 16px;
+  }
+  
+  .wrapper{
+    display: flex;
+    align-items: center;
+  }
+  
+  a {
+    color: #4BC2A8;
+  }
+  
+  a:hover{
+    color: #116A58;
+  }
+  
+  .fa-github {
+    height: 30px;
+    margin-left: 20px;
+  }
+  
