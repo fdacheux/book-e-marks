@@ -1,0 +1,12 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #051b1bcc;
+  padding: 10px;
+}
+
+.img-thumbnail {
+  background-color: rgba(127, 255, 212, 0.514);
+  border: rgba(127, 255, 212, 0.514);
+  height: 80px;
+}
