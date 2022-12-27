@@ -14,10 +14,10 @@ const isAuthenticated = ref(false);
         <router-link to="/about" class="nav-link">About</router-link>
       </li>
       <li v-if="!isAuthenticated" class="nav-item">
-        <button class="btn">Signup</button>
+        <button class="btn btn-signup">Signup</button>
       </li>
       <li v-if="!isAuthenticated" class="nav-item">
-        <button class="btn">Login</button>
+        <button class="btn btn-login">Login</button>
       </li>
       <li class="nav-item">
         <button

@@ -1,37 +1,63 @@
-ul{
-    display: flex;
-    list-style: none;
-    align-items: center;
-    margin-bottom: 0;
+ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  margin-bottom: 0;
 }
 
 a {
-    color: #b3f8e9;
+  color: #b3f8e9;
+  margin-right: 12px;
+  font-size: 18px;
 }
 
-.btn{
-    background-color: #051b1bcc;
-    color: #b3f8e9;
-    margin-left: 10px;
+.btn {
+  background-color: #051b1bcc;
+  color: #b3f8e9;
+  margin-left: 10px;
 }
 
-.btn-user{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
+.btn.btn-login,
+.btn.btn-signup {
+    width: 90px;
+    background-color: #b3f8e9;
+    color: #051b1b;
 }
 
-.avatar{
-    height: 20px;
-    border-radius: 50%;
-    object-fit: cover;
+.btn.btn-login {
+  margin-left: 8px;
+}
+
+.btn-user {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.avatar {
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .default-avatar {
-    position: absolute;
-    height: 25px;
-    filter: invert(48%) sepia(29%) saturate(276%) hue-rotate(86deg) brightness(128%) contrast(119%);
+  position: absolute;
+  height: 25px;
+  filter: invert(48%) sepia(29%) saturate(276%) hue-rotate(86deg)
+    brightness(128%) contrast(119%);
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .btn {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .btn {
+    margin-left: 30px;
+  }
 }
