@@ -1,54 +1,98 @@
+.layer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #051b1b80;
+  z-index: 3333;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 100%;
+  background-color: #b3f8e9;
+  z-index: 4444;
+}
+
 ul {
   display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 30px 20px;
+  gap: 12px;
+  height: 100%;
   list-style: none;
   align-items: center;
   margin-bottom: 0;
 }
 
 a {
-  color: #b3f8e9;
-  margin-right: 12px;
   font-size: 18px;
+}
+
+.about-link {
+  position: absolute;
+  bottom: 20px;
 }
 
 .btn {
   cursor: pointer;
   background-color: #051b1bcc;
   color: #b3f8e9;
-  margin-left: 10px;
 }
 
 .btn.btn-login,
 .btn.btn-signup {
+  width: 100px;
+  border-radius: 50px;
+  background-color: #051b1b;
+  color: #b3f8e9;
+}
+
+@media screen and (min-width: 768px) {
+  .layer {
+    display: none;
+  }
+  .navbar {
+    position: relative;
+    background-color: transparent;
+  }
+  a {
+    margin-right: 12px;
+    font-size: 18px;
+    color: #b3f8e9;
+  }
+  ul {
+    flex-direction: row;
+    padding: 0;
+  }
+  .about-link {
+    position: relative;
+    bottom: auto;
+  }
+  .btn {
+    background-color: #051b1bcc;
+    color: #b3f8e9;
+    margin-left: 10px;
+  }
+
+  .btn.btn-login,
+  .btn.btn-signup {
     width: 90px;
     background-color: #b3f8e9;
     color: #051b1b;
-}
+  }
 
-.btn.btn-login {
-  margin-left: 8px;
-}
-
-.btn-user {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-}
-
-.avatar {
-  height: 20px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.default-avatar {
-  position: absolute;
-  height: 25px;
-  filter: invert(48%) sepia(29%) saturate(276%) hue-rotate(86deg)
-    brightness(128%) contrast(119%);
+  .btn.btn-login {
+    margin-left: 8px;
+  }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {

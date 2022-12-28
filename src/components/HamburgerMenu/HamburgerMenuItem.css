@@ -1,0 +1,14 @@
+.mobile-menu-container{
+    display: flex;
+}
+
+.container-fluid{
+    display: flex;
+}
+
+.bars{
+    height: 30px;
+    color: #b3f8e9;
+}
+
+
