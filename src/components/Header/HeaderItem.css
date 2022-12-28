@@ -5,6 +5,7 @@ header {
   width: 100%;
   background-color: #051b1bcc;
   padding: 10px;
+  z-index: 3333;
 }
 
 .img-thumbnail {

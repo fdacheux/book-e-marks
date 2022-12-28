@@ -1,4 +1,5 @@
 .not-found-container {
+  padding-top: 85px;
   overflow: auto;
   width: 100%;
   display: flex;
@@ -26,7 +27,7 @@ picture {
 }
 
 img {
-  max-height: 700px;
+  max-height: 670px;
   max-width: 90%;
   border-radius: 15px;
 }

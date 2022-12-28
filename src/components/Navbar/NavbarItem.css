@@ -12,6 +12,7 @@ a {
 }
 
 .btn {
+  cursor: pointer;
   background-color: #051b1bcc;
   color: #b3f8e9;
   margin-left: 10px;
