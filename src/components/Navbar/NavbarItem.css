@@ -4,10 +4,30 @@
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
+  align-items: center;
   height: 100%;
   width: 100%;
   background-color: #051b1b80;
   z-index: 3333;
+}
+
+.close-btn {
+  margin-left: 65%;
+  background-color: transparent;
+  border: none;
+  height: fit-content;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  transform: scale(1.1);
+}
+
+.xmark-icon {
+  height: 60px;
+  cursor: pointer;
+  color: #b3f8e9;
 }
 
 .navbar {
@@ -15,7 +35,10 @@
   top: 0;
   bottom: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
   min-height: 100%;
+  max-width: 45%;
   background-color: #b3f8e9;
   z-index: 4444;
 }
@@ -33,16 +56,31 @@ ul {
   margin-bottom: 0;
 }
 
+.views-links:hover {
+  transform: scale(1.1);
+}
+
 a {
+  color: #051b1b;
   font-size: 18px;
 }
 
-.about-link {
+a:hover,
+a:focus {
+  color: #051b1b91;
+}
+
+.router-link-active {
+  display: none;
+}
+
+.about-link,
+.mobile-link.text-link {
   position: absolute;
   bottom: 20px;
 }
 
-.mobile-link {
+.mobile-link.icon-link {
   margin-bottom: 20px;
 }
 
@@ -88,21 +126,19 @@ a {
     font-size: 18px;
     color: #b3f8e9;
   }
-  a:hover{
+  a:hover {
     color: #b3f8e950;
   }
   ul {
     flex-direction: row;
     padding: 0;
   }
-
-  .router-link-active{
-    cursor: default;
-    color: #b3f8e950;
-  }
   .about-link {
     position: relative;
     bottom: auto;
+  }
+  .desktop-link {
+    margin-right: -10px;
   }
   .mobile-link {
     display: none;

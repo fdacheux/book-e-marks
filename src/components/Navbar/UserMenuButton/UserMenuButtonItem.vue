@@ -23,7 +23,8 @@ const username = ref("Jean-Eudes");
       />
     </button>
     <div class="username">
-      <p>{{ username }}</p>
+      <p class="welcome-msg">Welcome,</p>
+      <p>{{ username }} !</p>
     </div>
   </div>
 </template>

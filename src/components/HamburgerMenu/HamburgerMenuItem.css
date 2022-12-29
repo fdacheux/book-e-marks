@@ -11,4 +11,7 @@
     color: #b3f8e9;
 }
 
+.navbar-toggler:hover{
+    transform: rotate(-10deg) scale(1.1);
+}
 
