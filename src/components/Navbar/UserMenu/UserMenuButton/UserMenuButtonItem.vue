@@ -1,16 +1,18 @@
 <script setup lang="ts">
 // import usersAvatar from "../../../assets/10509029_AV.jpg";
 import { ref } from "vue";
-import usersAvatar from "../../../assets/nain.png";
+import usersAvatar from "../../../../assets/nain.png";
 // const userAvatar = usersAvatar;
 const userAvatar = usersAvatar ? usersAvatar : undefined;
 // const userAvatar = undefined;
 const username = ref("Jean-Eudes");
+const emit = defineEmits(["toggleMenu"]);
 </script>
 
 <template>
   <div class="btn-user-container">
     <button
+      @click="emit('toggleMenu')"
       class="btn btn-user"
       data-bs-toggle="popover"
       aria-label="Show menu for user"

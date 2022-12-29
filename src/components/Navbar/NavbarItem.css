@@ -48,7 +48,7 @@ ul {
   flex-direction: column-reverse;
   justify-content: flex-end;
   align-items: center;
-  padding: 30px 20px;
+  padding: 30px 0px;
   gap: 12px;
   height: 100%;
   list-style: none;
@@ -74,7 +74,11 @@ a:focus {
   display: none;
 }
 
-.about-link,
+.about-link{
+  position: absolute;
+  bottom: 60px;
+
+}
 .mobile-link.text-link {
   position: absolute;
   bottom: 20px;
@@ -101,6 +105,8 @@ a:focus {
 
 .btn.btn-login,
 .btn.btn-signup {
+  margin-left: 20px;
+  margin-right: 20px;
   width: 100px;
   border-radius: 50px;
   background-color: #051b1b;
@@ -136,9 +142,7 @@ a:focus {
   .about-link {
     position: relative;
     bottom: auto;
-  }
-  .desktop-link {
-    margin-right: -10px;
+    padding-left: 20px;
   }
   .mobile-link {
     display: none;
