@@ -23,7 +23,7 @@ const changeAuthenticationState = () => {
       <router-link :to="`/users/${id}`">Profile</router-link>
     </li>
     <li class="user-menu_link underline">
-      <router-link :to="`/users/${id}/editgm`">Modify profile</router-link>
+      <router-link :to="`/users/${id}/edit`">Modify profile</router-link>
     </li>
     <li class="user-menu_link underline">
       <router-link to="/bookmarks">My bookmarks</router-link>
