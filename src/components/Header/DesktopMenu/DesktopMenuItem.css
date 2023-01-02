@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (min-width: 768px) {
+    .container{
+        min-width: 100%;
+        padding-right: 50px;
+    }
+    .desktop-menu{
+      padding-right: 90px;
+    }
+}

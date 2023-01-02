@@ -1,0 +1,65 @@
+.button-group {
+  flex-direction: column-reverse;
+  gap: 12px;
+}
+
+.btn {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  background-color: #051b1bcc;
+  color: #b3f8e9;
+  transition: ease-in-out 220ms;
+  z-index: 44;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: scale(0.95);
+}
+
+.btn:after {
+  position: absolute;
+  content: " ";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #5a817959;
+  border-radius: 50px;
+  transform: scaleX(0);
+  transform-origin: bottom left;
+  transition: ease-in-out 600ms;
+}
+
+.btn:hover::after {
+  transform: scaleX(1);
+}
+
+.btn.btn-login,
+.btn.btn-signup {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 100px;
+  border-radius: 50px;
+  background-color: #051b1b;
+  color: #b3f8e9;
+}
+
+@media screen and (min-width: 768px) {
+  .button-group {
+    flex-direction: row;
+    margin-bottom: 0;
+    margin-right: -30px;
+    width: 220px;
+  }
+  .btn.btn-login,
+  .btn.btn-signup {
+    margin: 0;
+  }
+  .btn:after{
+    transition: ease-in-out 400ms;
+  }
+}
