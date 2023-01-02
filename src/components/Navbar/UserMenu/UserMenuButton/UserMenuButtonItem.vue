@@ -6,13 +6,13 @@ import usersAvatar from "../../../../assets/nain.png";
 const userAvatar = usersAvatar ? usersAvatar : undefined;
 // const userAvatar = undefined;
 const username = ref("Jean-Eudes");
-const emit = defineEmits(["toggleMenu"]);
+const emit = defineEmits(["expandMenu"]);
 </script>
 
 <template>
   <div class="btn-user-container">
     <button
-      @click="emit('toggleMenu')"
+      @mouseenter="emit('expandMenu')"
       class="btn btn-user"
       data-bs-toggle="popover"
       aria-label="Show menu for user"

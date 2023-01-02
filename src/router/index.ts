@@ -35,7 +35,7 @@ const router = createRouter({
       children: [
         {
           path: "",
-          name: "user-rpofile",
+          name: "user-profile",
           component: UserProfileItem,
         },
         {

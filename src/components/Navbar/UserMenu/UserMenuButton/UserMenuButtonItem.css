@@ -6,6 +6,7 @@
 
 .btn {
   color: #b3f8e9;
+  transition: ease-in-out 220ms;
 }
 
 .btn-user {

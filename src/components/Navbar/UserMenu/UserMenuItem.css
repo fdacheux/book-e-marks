@@ -1,3 +1,20 @@
 .list{
     background-color:#18463bcc;
 }
+
+@media screen and (min-width:768px) {
+    .list{
+        position: absolute;
+        top: 58px;
+        right: -40px;
+        width: 160px;
+    }
+    .hidden {
+        display: none;
+    }
+    .expanded{
+        min-height: fit-content;
+        min-width: fit-content;
+    }
+    
+}

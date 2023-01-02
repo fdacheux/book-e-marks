@@ -2,57 +2,68 @@
 import { isAuthenticated } from "@/stores/authenticationState";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import UserMenuItem from "./UserMenu/UserMenuItem.vue";
+import LinksGroup from "./LinksGroup/LinksGroupItem.vue";
+import ButtonsGroup from "./ButtonsGroup/ButtonsGroupItem.vue";
+import HomeBtn from "./HomeButton/HomeBtnItem.vue";
+import { ref } from "vue";
 // import usersAvatar from "../../assets/10509029_AV.jpg";
 // const userAvatar = usersAvatar;
 // const userAvatar = usersAvatar ? usersAvatar : undefined;
 
+const expanded = ref(false);
+const expandMenu = () => {
+  expanded.value = true;
+};
+const collapseMenu = () => {
+  expanded.value = false;
+};
+
+const changeAuthState = () => {
+  isAuthenticated.isAuthenticated = !isAuthenticated.isAuthenticated;
+};
+
+const launchAnimation = ref(false);
+
+const switchAnimation = () => {
+  launchAnimation.value = true;
+};
+
 const emit = defineEmits(["toggle"]);
-// const isAuthenticated = ref(false);
 </script>
 <template>
   <div class="nav-container">
     <div class="layer" @click="emit('toggle')">
-      <button aria-label="click to close menu" class="close-btn">
-        <font-awesome-icon icon="fa-solid fa-circle-xmark" class="xmark-icon" />
+      <button
+        aria-label="click to close menu"
+        class="close-btn"
+        @mouseleave="switchAnimation()"
+      >
+        <font-awesome-icon
+          icon="fa-solid fa-circle-xmark"
+          class="xmark-icon"
+          :class="launchAnimation && `reversed-rotation`"
+        />
       </button>
     </div>
     <nav class="navbar">
-      <ul class="links-list">
-        <li
-          class="nav-item views-links mobile-link text-link"
-          v-if="isAuthenticated.isAuthenticated"
-        >
-          <router-link to="/">Home </router-link>
-        </li>
-        <li class="nav-item views-links desktop-link">
-          <router-link to="/">Home </router-link>
-        </li>
-        <li class="nav-item views-links about-link">
-          <router-link to="/about" class="nav-link">About</router-link>
-        </li>
-        <li v-if="!isAuthenticated.isAuthenticated" class="nav-item">
-          <button class="btn btn-signup">Signup</button>
-        </li>
-        <li v-if="!isAuthenticated.isAuthenticated" class="nav-item">
-          <button
-            class="btn btn-login"
-            @click="isAuthenticated.isAuthenticated = true"
-          >
-            Login
-          </button>
-        </li>
-        <li class="nav-item" v-if="isAuthenticated.isAuthenticated">
-          <UserMenuItem />
-        </li>
-        <li
-          class="nav-item mobile-link icon-link"
+      <div class="links-list">
+        <LinksGroup class="links-group" />
+        <ButtonsGroup
           v-if="!isAuthenticated.isAuthenticated"
-        >
-          <router-link to="/" aria-label="click to homepage">
-            <font-awesome-icon icon="fa-solid fa-house" class="home-button" />
-          </router-link>
-        </li>
-      </ul>
+          @showMenu="changeAuthState()"
+        />
+        <div class="user-menu_container" v-if="isAuthenticated.isAuthenticated">
+          <div class="nav-item">
+            <UserMenuItem
+              class="userMenu"
+              :isExpanded="expanded"
+              @mouseenter="expandMenu()"
+              @mouseleave="collapseMenu()"
+            />
+          </div>
+        </div>
+        <HomeBtn v-if="!isAuthenticated.isAuthenticated" />
+      </div>
     </nav>
   </div>
 </template>

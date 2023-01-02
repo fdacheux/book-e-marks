@@ -1,0 +1,40 @@
+ul {
+  margin-bottom: 0;
+}
+
+.links-group {
+  flex-direction: column;
+  width: 100%;
+}
+
+a {
+  padding-top: 10px;
+  font-size: 18px;
+}
+
+.router-link-active {
+  display: none;
+}
+.views-links:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (min-width: 768px) {
+  .links-group {
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    margin-right: 30px;
+    align-items: center;
+  }
+  .views-links{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding-left: 20px;
+    color: #b3f8e9
+  }
+  .home-link{
+    padding-right: 20px;
+  }
+}
