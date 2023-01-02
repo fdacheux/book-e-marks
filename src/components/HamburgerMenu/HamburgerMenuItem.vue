@@ -22,7 +22,7 @@ const isCollapsed = ref(true);
     <NavbarItem
       id="navbarToggleExternalContent"
       v-if="isCollapsed == false"
-      @toggle="isCollapsed = true"
+      @toggle="isCollapsed = !isCollapsed"
     />
   </div>
 </template>

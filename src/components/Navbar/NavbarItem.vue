@@ -47,7 +47,7 @@ const emit = defineEmits(["toggle"]);
     </div>
     <nav class="navbar">
       <div class="links-list">
-        <LinksGroup class="links-group" />
+        <LinksGroup class="links-group" @click="emit('toggle')" />
         <ButtonsGroup
           v-if="!isAuthenticated.isAuthenticated"
           @showMenu="changeAuthState()"
@@ -59,6 +59,7 @@ const emit = defineEmits(["toggle"]);
               :isExpanded="expanded"
               @mouseenter="expandMenu()"
               @mouseleave="collapseMenu()"
+              @click="emit('toggle'), (expanded = !expanded)"
             />
           </div>
         </div>
