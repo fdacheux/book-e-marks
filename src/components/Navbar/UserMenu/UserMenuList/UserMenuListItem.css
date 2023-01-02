@@ -9,7 +9,8 @@ a {
   align-items: center;
   height: 100%;
   width: 100%;
-  color: #051b1b;
+  color: #0A1513;
+  /* color: #051b1b; */
 }
 
 a:hover,
@@ -59,6 +60,7 @@ a:focus {
 .user-menu_link:hover > a {
   transform: scale(1.1);
   opacity: 0.8;
+
 }
 
 .language-btn {
@@ -69,6 +71,7 @@ a:focus {
   margin: none;
   border-radius: 0;
   background-color: transparent;
+  color: #0A1513;
 }
 
 .flag {
@@ -79,7 +82,7 @@ a:focus {
 }
 
 @media screen and (min-width: 768px) {
-  .user_links-list:before{
+  .user_links-list:before {
     position: absolute;
     content: " ";
     top: -77px;
@@ -89,6 +92,5 @@ a:focus {
     width: 100%;
     height: 126%;
     background-color: transparent;
-
   }
 }

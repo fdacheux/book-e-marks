@@ -4,7 +4,9 @@
   <footer>
     <div class="wrapper">
       More of my projects on :
-      <a href="https://github.com/fdacheux"
+      <a
+        href="https://github.com/fdacheux"
+        aria-label="Click to see my github account"
         ><font-awesome-icon icon="fa-brands fa-github"
       /></a>
     </div>

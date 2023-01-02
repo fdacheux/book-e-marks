@@ -58,7 +58,6 @@
   flex-direction: column-reverse;
   justify-content: flex-end;
   align-items: center;
-  /* padding: 30px 0px; */
   height: 100%;
   align-items: center;
   margin-bottom: 0;
@@ -91,9 +90,9 @@ a:focus {
   color: #051b1b91;
 }
 
-.router-link-active:not(.home-btn-link) {
+/* .router-link-active:not(.home-btn-link) {
   display: none;
-}
+} */
 
 .router-link-active {
   cursor: default;
@@ -137,9 +136,6 @@ a:focus {
   }
   .mobile-link {
     display: none;
-  }
-  .user-menu_container{
-    width: 220px;
   }
 }
 

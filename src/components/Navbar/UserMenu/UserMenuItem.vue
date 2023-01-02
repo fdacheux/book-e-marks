@@ -6,7 +6,7 @@ const expanded = defineProps({
 });
 </script>
 <template>
-  <div class="user-menu-container" :class="expanded.isExpanded && `expanded`">
+  <div class="user-menu_container" :class="expanded.isExpanded && `expanded`">
     <UserMenuButton />
     <UserMenuList class="list" :class="!expanded.isExpanded && `hidden`" />
   </div>

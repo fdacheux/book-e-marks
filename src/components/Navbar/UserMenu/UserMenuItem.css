@@ -1,20 +1,20 @@
-.list{
-    background-color:#18463bcc;
+.list {
+  /* background-color:#18463bcc; */
+  background-color: #478a7a;
 }
 
-@media screen and (min-width:768px) {
-    .list{
-        position: absolute;
-        top: 58px;
-        right: -40px;
-        width: 160px;
-    }
-    .hidden {
-        display: none;
-    }
-    .expanded{
-        min-height: fit-content;
-        min-width: fit-content;
-    }
-    
+@media screen and (min-width: 768px) {
+  .list {
+    position: absolute;
+    top: 58px;
+    right: -40px;
+    width: 160px;
+  }
+  .hidden {
+    display: none;
+  }
+
+  .user-menu_container {
+    width: 100px;
+  }
 }

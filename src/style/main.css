@@ -16,7 +16,6 @@ main {
 
 a,
 a:focus,
-a:visited,
 a:hover {
   text-decoration: none;
   color: unset;

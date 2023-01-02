@@ -5,6 +5,7 @@
 
 .btn {
   position: relative;
+  border: none;
   cursor: pointer;
   background-color: #051b1bcc;
   color: #b3f8e9;
@@ -30,7 +31,7 @@
   border-radius: 50px;
   transform: scaleX(0);
   transform-origin: bottom left;
-  transition: ease-in-out 800ms;
+  transition: ease-in-out 600ms;
 }
 
 .btn:hover::after {
@@ -57,5 +58,8 @@
   .btn.btn-login,
   .btn.btn-signup {
     margin: 0;
+  }
+  .btn:after{
+    transition: ease-in-out 400ms;
   }
 }
