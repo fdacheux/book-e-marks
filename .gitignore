@@ -31,3 +31,6 @@ coverage
 
 commitlint.config.cjs
 .husky
+
+# Environment variables
+.env

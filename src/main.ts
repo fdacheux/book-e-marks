@@ -11,10 +11,22 @@ import {
   faBars,
   faHouse,
   faCircleXmark,
+  faEnvelope,
+  faLock,
+  faEye,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-library.add(faGithub, faUser, faBars, faHouse, faCircleXmark);
+library.add(
+  faGithub,
+  faUser,
+  faBars,
+  faHouse,
+  faCircleXmark,
+  faEnvelope,
+  faLock,
+  faEye
+);
 const app = createApp(App);
 
 app.use(router);
