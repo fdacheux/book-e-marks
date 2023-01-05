@@ -1,0 +1,160 @@
+.page-title:after {
+  position: absolute;
+  content: ". . . . . . . . ";
+  top: 25px;
+  left: 0;
+  right: 0;
+}
+
+.signup-form_container {
+  background-color: #b3f8e9ad;
+  margin: 2rem;
+  border-radius: 5px;
+  padding: 1rem;
+  max-width: 600px;
+}
+
+.signup_form {
+  margin: 3rem;
+}
+
+.form-label {
+  font-weight: 700;
+  padding-bottom: 2px;
+}
+
+.form-label--margin {
+  margin-top: 20px;
+}
+
+.label-error_container {
+  display: flex;
+  align-items: center;
+}
+
+.icon.valid {
+  color: #198754;
+}
+
+.icon.invalid {
+  color: #dc3545;
+}
+
+.input.valid {
+  transition: all ease-in-out 200ms;
+}
+
+input.valid:focus {
+  border: 1px solid rgb(25, 135, 84);
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.541);
+}
+
+.input.invalid {
+  transition: all ease-in-out 200ms;
+}
+
+input.invalid:focus {
+  border: 1px solid #ff5959;
+  box-shadow: 0 0 0 0.25rem rgba(253, 13, 13, 0.541);
+}
+
+.error-alert {
+  color: #dc3545;
+  font-weight: 900;
+  margin-left: 10px;
+}
+
+.error-message {
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.btn_container {
+  display: flex;
+  margin-top: 35px;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  background-color: #051b1bcc;
+  color: #b3f8e9;
+  overflow: hidden;
+  transition: ease-in-out 220ms;
+}
+
+.btn:hover {
+  transform: scale(0.95);
+  background-color: #051b1bcc;
+  color: #b3f8e9;
+  border: none;
+}
+
+.btn:after {
+  position: absolute;
+  content: "";
+  top: -40px;
+  bottom: 0;
+  left: 10px;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #5a817959;
+  transform: scale(0);
+  transform-origin: 50% 50%;
+  transition: ease-in-out 600ms;
+}
+
+.btn:hover::after {
+  transform: scale(2);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  background-color: #051b1bcc;
+}
+
+.signup_link {
+  font-style: italic;
+}
+
+.not-active-link {
+  position: relative;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 10px;
+  color: #116a58;
+  font-weight: 700;
+  font-style: normal;
+  transition: all ease-in 200ms;
+}
+
+.not-active-link:hover {
+  opacity: 0.5;
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 575px) {
+  .page-title:after {
+    top: 20px;
+  }
+
+  .signup-form_container {
+    margin: 0.5rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
+  .signup_form {
+    margin: 1.5rem;
+  }
+  .form-label {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .form-label {
+    font-size: 18px;
+  }
+}
