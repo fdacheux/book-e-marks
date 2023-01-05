@@ -81,7 +81,7 @@ const submitUserForm = (userForm: IUserData) => {
           required
           v-model="userForm.email"
           @change="controlEmailValidity()"
-          @keydown="controlEmailValidity()"
+          @keyup="controlEmailValidity()"
         />
       </div>
 
