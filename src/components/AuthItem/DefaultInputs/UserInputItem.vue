@@ -21,12 +21,12 @@ const FORBIDDEN_CHARS = /^[^*|\":<>[\]{}`\\()';@&$^ ]+$/;
 
 const controlUsernameValidity = (e: any): boolean | undefined => {
   const value = e?.target?.value;
-  isUsernameValid.value = FORBIDDEN_CHARS.test(value) && value.length > 3 && value.length < 15;
+  isUsernameValid.value = FORBIDDEN_CHARS.test(value) && value.length >= 3 && value.length < 15;
   value.trim();
   if (!value || value.length < 1) {
     return undefined;
   }
-  return FORBIDDEN_CHARS.test(value) && value.length > 3 && value.length < 15;
+  return FORBIDDEN_CHARS.test(value) && value.length >= 3 && value.length < 15;
 };
 
 const onUsernameChange = (e: any) => {
