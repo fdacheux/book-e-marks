@@ -4,15 +4,8 @@ import InputItem from "./InputItem.vue";
 
 const emailLabel = "Email address :";
 const emailPlaceholder = "franz.kafka@mail.com";
-
-const isMailValid: Ref<boolean> = ref(false);
-
-const onEmailChange = (isValid: boolean) => {
-  isMailValid.value = isValid;
-  emit("toggleValidity", isValid);
-};
-
-const emit = defineEmits(["toggleValidity"]);
+const inputType = "email";
+const emailIcon = "fa-envelope";
 
 interface IUserData {
   email: string;
@@ -21,41 +14,51 @@ interface IUserData {
 const userForm = <IUserData>{};
 userForm.email = "";
 
+const isMailValid: Ref<boolean> = ref(false);
 const MAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w+)+$/;
 const SEVERAL_AT_SIGN = /(\w*@\w*){2,}/;
 
 const controlEmailValidity = (e: any): boolean | undefined => {
   const value = e?.target?.value;
+  isMailValid.value = MAIL_REGEX.test(value) && !SEVERAL_AT_SIGN.test(value);
   if (!value || value.length < 1) {
     return undefined;
   }
   return MAIL_REGEX.test(value) && !SEVERAL_AT_SIGN.test(value);
 };
 
-const switchMailErrors = () => {
-  if (SEVERAL_AT_SIGN.test(userForm.email)) {
-    return "Only one @ at a time !";
-  } else if (!MAIL_REGEX.test(userForm.email)) {
-    return "Mail format invalid.";
+const onEmailChange = (e: any) => {
+  const email = e?.target?.value;
+  userForm.email = email;
+  email && switchMailErrors(email);
+};
+
+const switchMailErrors = (email: string) => {
+  if (!MAIL_REGEX.test(email)) {
+    SEVERAL_AT_SIGN.test(email)
+      ? (errMsg.value = "Only one @ at a time !")
+      : (errMsg.value = "Mail format invalid.");
   }
 };
-const errMsg = switchMailErrors();
+
+const errMsg = ref("");
 </script>
 <template>
   <div class="input_container">
     <InputItem
       :labelTxt="emailLabel"
-      labelFor="email"
-      icon="fa-envelope"
-      inputType="email"
-      inputName="email"
-      inputId="email"
+      :labelFor="inputType"
+      :icon="emailIcon"
+      :inputType="inputType"
+      :inputName="inputType"
+      :inputId="inputType"
       :placeholder="emailPlaceholder"
       required
       :vModel="userForm.email"
       :errorMsg="errMsg"
       :checkValidity="controlEmailValidity"
-      @toggleValidity="onEmailChange"
+      @toggleValidity="$emit('toggleValidity', isMailValid)"
+      @update:modelValue="onEmailChange"
     />
   </div>
 </template>

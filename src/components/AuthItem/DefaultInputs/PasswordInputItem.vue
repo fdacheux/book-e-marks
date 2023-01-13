@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref, type Ref } from "vue";
+import { ref, type Ref } from "vue";
 import InputItem from "./InputItem.vue";
 
 const labelTxt = "Password : ";
@@ -20,16 +20,11 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
 
 const controlPasswordValidity = (e: any): boolean | undefined => {
   const value = e?.target?.value;
+  isPasswordValid.value = PASSWORD_REGEX.test(value) && value.length > 1 && value.length < 64;
   if (!value || value.length < 1) {
     return undefined;
   }
   return PASSWORD_REGEX.test(value) && value.length > 1 && value.length < 64;
-};
-
-const onValidityChange = (e: any) => {
-  const isValid = e?.target?.value;
-  isPasswordValid.value = isValid;
-  emit("toggleValidity", isValid);
 };
 
 const onPasswordChange = (e: any) => {
@@ -37,8 +32,6 @@ const onPasswordChange = (e: any) => {
   userForm.password = password;
   password && switchPasswordErrors(password);
 };
-
-const emit = defineEmits(["toggleValidity"]);
 
 const switchPasswordErrors = (password: string) => {
   if (password.length < 8 || password.length > 64) {
@@ -69,7 +62,7 @@ const errMsg = ref("");
         minLength="8"
         maxLength="64"
         :checkValidity="controlPasswordValidity"
-        @toggleValidity="onValidityChange"
+        @toggleValidity="$emit('toggleValidity', isPasswordValid)"
         @update:modelValue="onPasswordChange"
       >
         <span

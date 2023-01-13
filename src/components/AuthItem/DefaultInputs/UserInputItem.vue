@@ -21,17 +21,12 @@ const FORBIDDEN_CHARS = /^[^*|\":<>[\]{}`\\()';@&$^ ]+$/;
 
 const controlUsernameValidity = (e: any): boolean | undefined => {
   const value = e?.target?.value;
+  isUsernameValid.value = FORBIDDEN_CHARS.test(value) && value.length > 3 && value.length < 15;
   value.trim();
   if (!value || value.length < 1) {
     return undefined;
   }
   return FORBIDDEN_CHARS.test(value) && value.length > 3 && value.length < 15;
-};
-
-const onValidityChange = (e: any) => {
-  const isValid = e?.target?.value;
-  isUsernameValid.value = isValid;
-  emit("toggleValidity", isValid);
 };
 
 const onUsernameChange = (e: any) => {
@@ -40,7 +35,6 @@ const onUsernameChange = (e: any) => {
   username && switchUsernameErrors(username);
 };
 
-const emit = defineEmits(["toggleValidity"]);
 
 const switchUsernameErrors = (username: string) => {
   if (username.length < 3 || username.length > 15) {
@@ -69,7 +63,7 @@ const errMsg = ref("");
       :vModel="userForm.username"
       :errorMsg="errMsg"
       :checkValidity="controlUsernameValidity"
-      @toggleValidity="onValidityChange"
+      @toggleValidity="$emit('toggleValidity', isUsernameValid)"
       @update:modelValue="onUsernameChange"
     />
   </div>
