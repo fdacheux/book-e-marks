@@ -9,6 +9,7 @@ const usernameIcon = "fa-user";
 const usernamePlaceholder = "franzK";
 
 const isUsernameValid: Ref<boolean> = ref(false);
+const FORBIDDEN_CHARS = /^[^*|\":<>[\]{}`\\()';@&$^ ]+$/;
 
 interface IUserData {
   username: string;
@@ -17,11 +18,15 @@ interface IUserData {
 const userForm = <IUserData>{};
 userForm.username = "";
 
-const FORBIDDEN_CHARS = /^[^*|\":<>[\]{}`\\()';@&$^ ]+$/;
+const emits = defineEmits<{
+  (e: "updateUsername", value: string): void;
+  (e: "toggleUsernameValidity", value: boolean): void;
+}>();
 
 const controlUsernameValidity = (e: any): boolean | undefined => {
   const value = e?.target?.value;
-  isUsernameValid.value = FORBIDDEN_CHARS.test(value) && value.length >= 3 && value.length < 15;
+  isUsernameValid.value =
+    FORBIDDEN_CHARS.test(value) && value.length >= 3 && value.length < 15;
   value.trim();
   if (!value || value.length < 1) {
     return undefined;
@@ -32,9 +37,9 @@ const controlUsernameValidity = (e: any): boolean | undefined => {
 const onUsernameChange = (e: any) => {
   const username = e?.target?.value;
   userForm.username = username;
+  emits('updateUsername', username)
   username && switchUsernameErrors(username);
 };
-
 
 const switchUsernameErrors = (username: string) => {
   if (username.length < 3 || username.length > 15) {
@@ -46,7 +51,6 @@ const switchUsernameErrors = (username: string) => {
 };
 
 const errMsg = ref("");
-
 </script>
 <template>
   <div class="input_container">
@@ -63,7 +67,7 @@ const errMsg = ref("");
       :vModel="userForm.username"
       :errorMsg="errMsg"
       :checkValidity="controlUsernameValidity"
-      @toggleValidity="$emit('toggleValidity', isUsernameValid)"
+      @toggleValidity="emits('toggleUsernameValidity', isUsernameValid)"
       @update:modelValue="onUsernameChange"
     />
   </div>

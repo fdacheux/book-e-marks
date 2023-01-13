@@ -84,6 +84,26 @@
   transform: scale(1.1);
 }
 
+.successful-msg {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.created-account-title {
+  padding-bottom: 10px;
+  font-size: 26px;
+}
+
+.login-message {
+  font-size: 18px;
+}
+
+.login-link {
+  text-decoration: underline;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 575px) {
   .page-title:after {
     top: 20px;
@@ -105,5 +125,15 @@
 @media screen and (min-width: 992px) {
   .form-label {
     font-size: 18px;
+  }
+  .successful-msg {
+    padding-top: 40px;
+  }
+  .created-account-title {
+    padding-bottom: 20px;
+    font-size: 30px;
+  }
+  .login-message {
+    font-size: 20px;
   }
 }

@@ -18,6 +18,11 @@ userForm.password = "";
 const isPasswordValid: Ref<boolean> = ref(false);
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
 
+const emits = defineEmits<{
+  (e: 'updatePassword', value: string): void
+  (e: 'togglePasswordValidity', value: boolean): void
+}>()
+
 const controlPasswordValidity = (e: any): boolean | undefined => {
   const value = e?.target?.value;
   isPasswordValid.value = PASSWORD_REGEX.test(value) && value.length > 1 && value.length < 64;
@@ -30,6 +35,7 @@ const controlPasswordValidity = (e: any): boolean | undefined => {
 const onPasswordChange = (e: any) => {
   const password = e?.target?.value;
   userForm.password = password;
+  emits('updatePassword', password)
   password && switchPasswordErrors(password);
 };
 
@@ -62,7 +68,7 @@ const errMsg = ref("");
         minLength="8"
         maxLength="64"
         :checkValidity="controlPasswordValidity"
-        @toggleValidity="$emit('toggleValidity', isPasswordValid)"
+        @toggleValidity="emits('togglePasswordValidity', isPasswordValid)"
         @update:modelValue="onPasswordChange"
       >
         <span

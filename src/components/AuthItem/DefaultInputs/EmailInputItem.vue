@@ -18,6 +18,11 @@ const isMailValid: Ref<boolean> = ref(false);
 const MAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w+)+$/;
 const SEVERAL_AT_SIGN = /(\w*@\w*){2,}/;
 
+const emits = defineEmits<{
+  (e: 'updateMail', value: string): void
+  (e: 'toggleMailValidity', value: boolean): void
+}>()
+
 const controlEmailValidity = (e: any): boolean | undefined => {
   const value = e?.target?.value;
   isMailValid.value = MAIL_REGEX.test(value) && !SEVERAL_AT_SIGN.test(value);
@@ -30,6 +35,7 @@ const controlEmailValidity = (e: any): boolean | undefined => {
 const onEmailChange = (e: any) => {
   const email = e?.target?.value;
   userForm.email = email;
+  emits('updateMail', email)
   email && switchMailErrors(email);
 };
 
@@ -57,7 +63,7 @@ const errMsg = ref("");
       :vModel="userForm.email"
       :errorMsg="errMsg"
       :checkValidity="controlEmailValidity"
-      @toggleValidity="$emit('toggleValidity', isMailValid)"
+      @toggleValidity="emits('toggleMailValidity', isMailValid)"
       @update:modelValue="onEmailChange"
     />
   </div>

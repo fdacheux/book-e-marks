@@ -5,12 +5,14 @@ import { ref, type Ref } from "vue";
 import EmailInput from "../DefaultInputs/EmailInputItem.vue";
 import PasswordInput from "../DefaultInputs/PasswordInputItem.vue";
 import UserInput from "../DefaultInputs/UserInputItem.vue";
+import SuccessfulSignup from "./SuccessfulSignupItem.vue";
 
 const isMailValid: Ref<boolean> = ref(false);
 const isPasswordValid: Ref<boolean> = ref(false);
 const isUsernameValid: Ref<boolean> = ref(false);
 const isDefaultFormInvalid: Ref<boolean> = ref(true);
 const isErrorDisplayed = ref(false);
+const successfullySignedup = ref(false);
 
 const url = "/auth/signup";
 const errorMessage =
@@ -39,8 +41,8 @@ const onUsernameChange = (isValid: boolean) => {
   isDefaultFormInvalid.value = !(isValid && isMailValid.value && isPasswordValid.value);
 };
 
-const updateEmail = (modelValue: string) => {
-  userForm.email = modelValue;
+const updateEmail = (newValue: string) => {
+  userForm.email = newValue;
   console.log(userForm.email);
 };
 
@@ -49,7 +51,10 @@ const updatePassword = (newValue: string) => {
   console.log(userForm.password);
 };
 
-
+const updateUsername = (newValue: string) => {
+  userForm.username = newValue;
+  console.log(userForm.username);
+};
 
 const addClass = (condition: boolean) => {
   console.log(condition);
@@ -66,6 +71,7 @@ const submitUserForm = (userForm: IUserData) => {
   try {
     console.log(userForm);
     postUser(userForm);
+    successfullySignedup.value = true;
   } catch {
     isErrorDisplayed.value = true;
   }
@@ -76,17 +82,20 @@ const submitUserForm = (userForm: IUserData) => {
 <template>
   <div class="signup-form_container">
     <h1 class="text-center page-title">Create account</h1>
-    <form class="signup_form form">
+    <form class="signup_form form" v-if="!successfullySignedup">
       <div class="inputs_container">
         <EmailInput
-          @toggleValidity="onEmailChange"
+          @toggleMailValidity="onEmailChange"
+          @updateMail="updateEmail"
         />
         <PasswordInput
-          @toggleValidity="onPasswordChange"
+          @togglePasswordValidity="onPasswordChange"
+          @updatePassword="updatePassword"
         />
 
         <UserInput
-        @toggleValidity="onUsernameChange"
+        @toggleUsernameValidity="onUsernameChange"
+        @updateUsername="updateUsername"
         />
 
         <div class="btn_container">
@@ -102,13 +111,14 @@ const submitUserForm = (userForm: IUserData) => {
         </div>
       </div>
     </form>
-    <div class="signup_link text-center">
+    <div class="signup_link text-center" v-if="!successfullySignedup">
       <p>Already have an account ? :</p>
       <router-link active-class="not-active-link" to="/auth"
         >Sign-in</router-link
       >
     </div>
     <ErrorItem :message="errorMessage" :url="url" v-if="isErrorDisplayed" />
+    <SuccessfulSignup v-if="successfullySignedup"/>
   </div>
 </template>
 
