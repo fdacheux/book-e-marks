@@ -2,9 +2,14 @@
 import ErrorItem from "../../ErrorItem/ErrorItem.vue";
 import { postUser } from "@/stores/postUser";
 import { ref, type Ref } from "vue";
+import EmailInput from "../DefaultInputs/EmailInputItem.vue";
+import PasswordInput from "../DefaultInputs/PasswordInputItem.vue";
+import UserInput from "../DefaultInputs/UserInputItem.vue";
 
-const isEmailInvalid: Ref<undefined | boolean> = ref(undefined);
-const isPasswordHidden = ref(true);
+const isMailValid: Ref<boolean> = ref(false);
+const isPasswordValid: Ref<boolean> = ref(false);
+const isUsernameValid: Ref<boolean> = ref(false);
+const isDefaultFormInvalid: Ref<boolean> = ref(true);
 const isErrorDisplayed = ref(false);
 
 const url = "/auth/signup";
@@ -13,27 +18,41 @@ const errorMessage =
 interface IUserData {
   email: string;
   password: string;
+  username: string;
 }
 
 const userForm = <IUserData>{};
 
-const MAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w+)+$/;
-const SEVERAL_AT_SIGN = /(\w*@\w*){2,}/;
 
-const controlEmailValidity = () => {
-  if (userForm.email.length < 1) {
-    isEmailInvalid.value = undefined;
-  } else if (
-    !MAIL_REGEX.test(userForm.email) ||
-    SEVERAL_AT_SIGN.test(userForm.email)
-  ) {
-    isEmailInvalid.value = true;
-  } else {
-    isEmailInvalid.value = false;
-  }
+const onEmailChange = (isValid: boolean) => {
+  isMailValid.value = isValid;
+  isDefaultFormInvalid.value = !(isValid && isPasswordValid.value && isUsernameValid.value);
 };
 
-const addClass = (condition: boolean | undefined) => {
+const onPasswordChange = (isValid: boolean) => {
+  isPasswordValid.value = isValid;
+  isDefaultFormInvalid.value = !(isValid && isMailValid.value && isUsernameValid.value);
+};
+
+const onUsernameChange = (isValid: boolean) => {
+  isUsernameValid.value = isValid;
+  isDefaultFormInvalid.value = !(isValid && isMailValid.value && isPasswordValid.value);
+};
+
+const updateEmail = (modelValue: string) => {
+  userForm.email = modelValue;
+  console.log(userForm.email);
+};
+
+const updatePassword = (newValue: string) => {
+  userForm.password = newValue;
+  console.log(userForm.password);
+};
+
+
+
+const addClass = (condition: boolean) => {
+  console.log(condition);
   if (condition === undefined) {
     return "";
   } else if (condition) {
@@ -51,77 +70,36 @@ const submitUserForm = (userForm: IUserData) => {
     isErrorDisplayed.value = true;
   }
 };
+
 </script>
 
 <template>
   <div class="signup-form_container">
     <h1 class="text-center page-title">Create account</h1>
     <form class="signup_form form">
-      <div class="label-error_container">
-        <label for="email" class="form-label">Email address : </label>
-        <div v-if="isEmailInvalid" class="error-alert">
-          <p class="error-message">Email is invalid</p>
+      <div class="inputs_container">
+        <EmailInput
+          @toggleValidity="onEmailChange"
+        />
+        <PasswordInput
+          @toggleValidity="onPasswordChange"
+        />
+
+        <UserInput
+        @toggleValidity="onUsernameChange"
+        />
+
+        <div class="btn_container">
+          <button
+            class="btn btn-primary"
+            :class="addClass(isDefaultFormInvalid)"
+            :disabled="isDefaultFormInvalid"
+            type="submit"
+            @click.prevent="submitUserForm(userForm)"
+          >
+            Create account
+          </button>
         </div>
-      </div>
-
-      <div class="input-group">
-        <span class="input-group-text"
-          ><font-awesome-icon
-            icon="fa-solid fa-envelope"
-            :class="addClass(isEmailInvalid)"
-            class="icon"
-        /></span>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="franz.kafka@mail.com"
-          class="form-control"
-          :class="addClass(isEmailInvalid)"
-          required
-          v-model="userForm.email"
-          @change="controlEmailValidity()"
-          @keyup="controlEmailValidity()"
-        />
-      </div>
-
-      <label for="password" class="form-label form-label--margin"
-        >Password :
-      </label>
-      <div class="input-group">
-        <span class="input-group-text"
-          ><font-awesome-icon icon="fa-solid fa-lock"
-        /></span>
-        <input
-          minlength="8"
-          maxlength="32"
-          :type="isPasswordHidden ? `password` : `text`"
-          name="password"
-          id="password"
-          class="form-control"
-          required
-          v-model="userForm.password"
-        />
-        <span
-          class="input-group-text"
-          @mousedown="isPasswordHidden = false"
-          @mouseup="isPasswordHidden = true"
-          @touchstart="isPasswordHidden = false"
-          @touchend="isPasswordHidden = true"
-          ><font-awesome-icon icon="fa-solid fa-eye"
-        /></span>
-      </div>
-
-      <div class="btn_container">
-        <button
-          class="btn btn-primary"
-          :class="addClass(isEmailInvalid)"
-          :disabled="isEmailInvalid || isEmailInvalid === undefined"
-          type="submit"
-          @click.prevent="submitUserForm(userForm)"
-        >
-          Create account
-        </button>
       </div>
     </form>
     <div class="signup_link text-center">
@@ -133,4 +111,5 @@ const submitUserForm = (userForm: IUserData) => {
     <ErrorItem :message="errorMessage" :url="url" v-if="isErrorDisplayed" />
   </div>
 </template>
+
 <style scoped src="./SignupFormItem.css"></style>

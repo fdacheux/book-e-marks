@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <section class="signup-form_container">
-    <RouterView></RouterView>
+  <section class="form_container">
+    <RouterView />
   </section>
 </template>
