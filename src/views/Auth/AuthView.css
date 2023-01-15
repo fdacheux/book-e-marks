@@ -1,0 +1,9 @@
+.form_container {
+    margin-top: 10vh;
+}
+
+@media screen and (min-width: 992px) {
+    .form_container {
+        margin-top: 80px;
+    }
+}

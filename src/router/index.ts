@@ -2,12 +2,19 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/Home/HomeView.vue";
 import AboutView from "../views/About/AboutView.vue";
 import NotFoundView from "../views/NotFound/NotFoundView.vue";
-import UserProfile from "../views/User/UserProfileView.vue";
-import UserProfileItem from "../components/UserProfile/UserProfileItem.vue";
-import EditProfileItem from "../components/EditProfile/EditProfileItem.vue";
+
+import AuthView from "../views/Auth/AuthView.vue";
+import SignupForm from "@/components/AuthItem/SignupForm/SignupFormItem.vue";
+import SigninForm from "@/components/AuthItem/SigninForm/SigninFormItem.vue";
+
+import UserProfileView from "../views/User/UserProfileView.vue";
+import UserProfile from "../components/UserItems/UserProfile/UserProfileItem.vue";
+import EditProfile from "../components/UserItems/EditProfile/EditProfileItem.vue";
+
 import BookmarksView from "../views/Bookmarks/BookmarksView.vue";
-import BookmarksList from "../components/BookmarksList/BookmarksListItem.vue";
-import BookmarkCreation from "../components/BookmarkCreation/BookmarkCreationItem.vue";
+import BookmarksList from "../components/BookmarksItems/BookmarksList/BookmarksListItem.vue";
+import BookmarkCreation from "../components/BookmarksItems/BookmarkCreation/BookmarkCreationItem.vue";
+
 import { isAuthenticated } from "@/stores/authenticationState";
 
 const router = createRouter({
@@ -24,11 +31,28 @@ const router = createRouter({
       component: AboutView,
     },
     {
+      path: "/auth",
+      name: "Auth",
+      component: AuthView,
+      children: [
+        {
+          path: "",
+          name: "Login",
+          component: SigninForm,
+        },
+        {
+          path: "/auth/signup",
+          name: "Signup",
+          component: SignupForm,
+        },
+      ],
+    },
+    {
       path: "/users/:id",
       name: "user",
-      component: UserProfile,
+      component: UserProfileView,
       beforeEnter: (to, from, next) => {
-        if (to.name !== "Login" && !isAuthenticated) next({ name: "Login" });
+        if (to.name !== "Auth" && !isAuthenticated) next({ name: "Auth" });
         else next();
       },
 
@@ -36,12 +60,12 @@ const router = createRouter({
         {
           path: "",
           name: "user-profile",
-          component: UserProfileItem,
+          component: UserProfile,
         },
         {
           path: "edit",
           name: "edit-user",
-          component: EditProfileItem,
+          component: EditProfile,
         },
       ],
     },
@@ -50,7 +74,7 @@ const router = createRouter({
       name: "bookmarks",
       component: BookmarksView,
       beforeEnter: (to, from, next) => {
-        if (to.name !== "Login" && !isAuthenticated) next({ name: "Login" });
+        if (to.name !== "Auth" && !isAuthenticated) next({ name: "Auth" });
         else next();
       },
       children: [

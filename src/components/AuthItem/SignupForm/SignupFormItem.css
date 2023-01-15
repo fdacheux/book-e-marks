@@ -1,0 +1,139 @@
+.page-title:after {
+  position: absolute;
+  content: ". . . . . . . . ";
+  top: 25px;
+  left: 0;
+  right: 0;
+}
+
+.signup-form_container {
+  background-color: #b3f8e9ad;
+  margin: 2rem;
+  border-radius: 5px;
+  padding: 1rem;
+  max-width: 600px;
+}
+
+.signup_form {
+  margin: 3rem;
+}
+
+.btn_container {
+  display: flex;
+  margin-top: 35px;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  background-color: #051b1bcc;
+  color: #b3f8e9;
+  overflow: hidden;
+  transition: ease-in-out 220ms;
+}
+
+.btn:hover {
+  transform: scale(0.95);
+  background-color: #051b1bcc;
+  color: #b3f8e9;
+  border: none;
+}
+
+.btn:after {
+  position: absolute;
+  content: "";
+  top: -40px;
+  bottom: 0;
+  left: 10px;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #5a817959;
+  transform: scale(0);
+  transform-origin: 50% 50%;
+  transition: ease-in-out 600ms;
+}
+
+.btn:hover::after {
+  transform: scale(2);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  background-color: #051b1bcc;
+}
+
+.signup_link {
+  font-style: italic;
+}
+
+.not-active-link {
+  position: relative;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 10px;
+  color: #116a58;
+  font-weight: 700;
+  font-style: normal;
+  transition: all ease-in 200ms;
+}
+
+.not-active-link:hover {
+  opacity: 0.5;
+  transform: scale(1.1);
+}
+
+.successful-msg {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.created-account-title {
+  padding-bottom: 10px;
+  font-size: 26px;
+}
+
+.login-message {
+  font-size: 18px;
+}
+
+.login-link {
+  text-decoration: underline;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 575px) {
+  .page-title:after {
+    top: 20px;
+  }
+
+  .signup-form_container {
+    margin: 0.5rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
+  .signup_form {
+    margin: 1.5rem;
+  }
+  .form-label {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .form-label {
+    font-size: 18px;
+  }
+  .successful-msg {
+    padding-top: 40px;
+  }
+  .created-account-title {
+    padding-bottom: 20px;
+    font-size: 30px;
+  }
+  .login-message {
+    font-size: 20px;
+  }
+}
