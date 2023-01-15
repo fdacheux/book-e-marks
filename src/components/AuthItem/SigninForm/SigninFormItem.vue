@@ -3,6 +3,8 @@ import { ref, type Ref } from "vue";
 import EmailInput from "../DefaultInputs/EmailInputItem.vue";
 import PasswordInput from "../DefaultInputs/PasswordInputItem.vue";
 import ErrorItem from "@/components/ErrorItem/ErrorItem.vue";
+import { login } from "../../../services/auth.service";
+import type { IUserFormDTO } from "../../../models/user-data.model";
 
 const isMailValid: Ref<boolean> = ref(false);
 const isPasswordValid: Ref<boolean> = ref(false);
@@ -12,12 +14,7 @@ const isErrorDisplayed = ref(false);
 const url = "/auth";
 const errorMessage = "Failed to signin, please try again later.";
 
-interface IUserData {
-  email: string;
-  password: string;
-}
-
-const userForm = <IUserData>{};
+const userForm = <IUserFormDTO>{};
 
 const onEmailChange = (isValid: boolean) => {
   isMailValid.value = isValid;
@@ -50,9 +47,10 @@ const addClass = (condition: boolean) => {
   }
 };
 
-const submitUserForm = (userForm: IUserData) => {
+const submitUserForm = (userForm: IUserFormDTO) => {
   try {
     console.log(userForm);
+    login(userForm);
   } catch {
     isErrorDisplayed.value = true;
   }

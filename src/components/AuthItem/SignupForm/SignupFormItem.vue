@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ErrorItem from "../../ErrorItem/ErrorItem.vue";
-import { postUser } from "@/stores/postUser";
+import { createUser } from "../../../services/auth.service";
 import { ref, type Ref } from "vue";
 import EmailInput from "../DefaultInputs/EmailInputItem.vue";
 import PasswordInput from "../DefaultInputs/PasswordInputItem.vue";
@@ -70,7 +70,7 @@ const addClass = (condition: boolean) => {
 const submitUserForm = (userForm: IUserData) => {
   try {
     console.log(userForm);
-    postUser(userForm);
+    createUser(userForm);
     successfullySignedup.value = true;
   } catch {
     isErrorDisplayed.value = true;
