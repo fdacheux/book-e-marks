@@ -4,3 +4,4 @@
     <RouterView />
   </section>
 </template>
+<style scoped src="./AuthView.css"></style>

@@ -54,7 +54,7 @@ const errMsg = ref("");
 
 <template>
   <div class="default-inputs_container">
-    <div class="input_container mt-3">
+    <div class="input_container">
       <InputItem
         :labelTxt="labelTxt"
         :labelFor="inputType"
